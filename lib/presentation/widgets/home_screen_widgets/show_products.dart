@@ -1,0 +1,72 @@
+import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc.dart';
+import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc_evetn.dart';
+import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc_state.dart';
+import 'package:bazar/presentation/screens/home_screen/screens/show_product_screen.dart';
+import 'package:bazar/presentation/widgets/home_screen_widgets/show_product_for_menu.dart';
+import 'package:bazar/presentation/widgets/home_screen_widgets/widget_for_loading_product.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
+
+class ShowProducts extends StatefulWidget {
+  const ShowProducts({super.key});
+
+  @override
+  State<ShowProducts> createState() => _ShowProductsState();
+}
+
+class _ShowProductsState extends State<ShowProducts> {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ProductsBloc, ProductsBlocState>(
+      builder: (context, state) {
+        if (state is LoadingProductsBlocState) {
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: const ScrollPhysics(),
+            itemCount: 10,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1 / 1.5,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+            ),
+            itemBuilder: (context, state) {
+              return const WidgetForLoadingProduct();
+            },
+          );
+        }
+
+        if (state is LoadedAllProductsBlocState) {
+          return state.products.isEmpty
+              ? const Center(
+                  child: Text("Products not found!"),
+                )
+              : RefreshIndicator(
+            onRefresh: () async{},
+                child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const ScrollPhysics(),
+                    itemCount: state.products.length,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1 / 1.2,
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 15,
+                    ),
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () async{
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ShowProductScreen(product: state.products[index])));
+                        },
+                          child: ShowProductForMenu(product: state.products[index]));
+                    },
+                  ),
+              );
+        }
+
+        return Container();
+      },
+    );
+  }
+}
