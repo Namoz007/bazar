@@ -28,6 +28,7 @@ class _ShowProductScreenState extends State<ShowProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);

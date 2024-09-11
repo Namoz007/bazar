@@ -11,6 +11,12 @@ class UserBloc extends Bloc<UserBlocEvent,UserBlocState>{
   UserBloc(): super(InitialUserBlocState()){
     on<GetMyUserFromSourcesUserBlocEvent>(_getUserFromSources);
     on<GetMyUserUserBlocEvent>(_getMyUser);
+    on<EditUserBlocEvent>(_editMyUser);
+  }
+
+  void _editMyUser(EditUserBlocEvent event,emit) async{
+    AppDetails.model = await _repositories.editUser(event.model);
+   emit(LoadedUserUserBlocState(userModel: AppDetails.model!));
   }
 
   void _getMyUser(GetMyUserUserBlocEvent event,emit){

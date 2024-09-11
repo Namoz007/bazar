@@ -16,9 +16,9 @@ class UserDetails extends UserModel {
       email: json['email'],
       fullName: json['fullName'],
       gender: json['gender'],
-      birthday: json['birthday'] == null ? null : DateTime.parse(json['birthday']),
+      birthday: json['birthday'] == null || json['birthday'].toString().isEmpty ? null : DateTime.parse(json['birthday'].toString()),
       phoneNumber: json['phoneNumber'],
-      imgUrl: json['imgUrl']
+      imgUrl: json['imgUrl'] == null || json['imgUrl'].toString().isEmpty ? null : json['imgUrl']
     );
   }
 
@@ -28,10 +28,10 @@ class UserDetails extends UserModel {
       "id": id,
       "email": email,
       "fullName": fullName,
-      "gender": gender,
-      "birthday": birthday,
-      "phoneNumber": phoneNumber,
-      "imgUrl": imgUrl,
+      "gender": gender ?? '',
+      "birthday": birthday == null ? '' : birthday.toString(),
+      "phoneNumber": phoneNumber ?? '',
+      "imgUrl": imgUrl ?? ''
     };
   }
 }

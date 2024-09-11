@@ -1,8 +1,10 @@
+import 'package:bazar/core/utils/details/app_details.dart';
 import 'package:bazar/core/utils/helpers/dependency_helpers.dart';
 import 'package:bazar/data/repostories/authentication_repositories.dart';
 import 'package:bazar/presentation/screens/authentication/bloc/authentication_bloc_event.dart';
 import 'package:bazar/presentation/screens/authentication/bloc/authentication_bloc_state.dart';
 import 'package:bloc/bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationBlocEvent, AuthenticationBlocState> {
@@ -14,6 +16,12 @@ class AuthenticationBloc
     on<SignUpUserAuthenticationBlocEvent>(_registerUser);
     on<LoginUserAuthenticationBlocEvent>(_loginUser);
     on<ResetPasswordUserAuthenticationBlocEvent>(_resetPassword);
+    on<LogOutAuthenticationBlocEvent>(_logOut);
+  }
+
+  void _logOut(LogOutAuthenticationBlocEvent event,emit){
+    getIt<SharedPreferences>().remove("email");
+    AppDetails.model = null;
   }
 
   void _loginUser(LoginUserAuthenticationBlocEvent event,emit) async{

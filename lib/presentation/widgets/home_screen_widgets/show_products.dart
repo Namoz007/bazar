@@ -21,29 +21,34 @@ class _ShowProductsState extends State<ShowProducts> {
     return BlocBuilder<ProductsBloc, ProductsBlocState>(
       builder: (context, state) {
         if (state is LoadingProductsBlocState) {
-          return GridView.builder(
-            shrinkWrap: true,
-            physics: const ScrollPhysics(),
-            itemCount: 10,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1 / 1.5,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
+          return Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: const ScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1 / 1.2,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 15,
+              ),
+              itemBuilder: (context, state) {
+                return const WidgetForLoadingProduct();
+              },
             ),
-            itemBuilder: (context, state) {
-              return const WidgetForLoadingProduct();
-            },
           );
         }
 
         if (state is LoadedAllProductsBlocState) {
           return state.products.isEmpty
               ? const Center(
-                  child: Text("Products not found!"),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 150),
+                    child: Text("Products not found!"),
+                  ),
                 )
-              : RefreshIndicator(
-            onRefresh: () async{},
+              : Padding(
+                padding: const EdgeInsets.only(top: 20),
                 child: GridView.builder(
                     shrinkWrap: true,
                     physics: const ScrollPhysics(),

@@ -18,8 +18,7 @@ class AuthenticationSources {
     if (users.data != null) {
       final mp = users.data as Map<String, dynamic>;
       for (int i = 0; i < mp.keys.toList().length; i++)
-        if (mp[mp.keys.toList()[i]]['email'] ==
-            getIt<SharedPreferences>().getString("email")) {
+        if (mp[mp.keys.toList()[i]]['email'] == getIt<SharedPreferences>().getString("email")) {
           AppDetails.model = UserDetails.fromJson(mp[mp.keys.toList()[i]]);
           return true;
         }
@@ -29,7 +28,7 @@ class AuthenticationSources {
 
   Future<String?> loginUser(LoginRequestModel model) async {
     try {
-      await getIt<FirebaseAuth>().signInWithEmailAndPassword(
+      final data = await getIt<FirebaseAuth>().signInWithEmailAndPassword(
         email: model.email,
         password: model.password,
       );

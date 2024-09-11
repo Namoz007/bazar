@@ -1,3 +1,4 @@
+import 'package:bazar/core/utils/details/app_details.dart';
 import 'package:bazar/presentation/screens/main_page/screens/main_page.dart';
 import 'package:bazar/presentation/screens/authentication/bloc/authentication_bloc.dart';
 import 'package:bazar/presentation/screens/authentication/bloc/authentication_bloc_event.dart';
@@ -28,6 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: BlocListener<AuthenticationBloc,AuthenticationBlocState>(
         listener: (context, state) {
+          print("bu state $state");
+          if(state is ErrorAuthenticationBlocState){
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message,),),);
+          }
+
           if(state is UnAuthenticatedUserAuthenticationBlocState){
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
           }

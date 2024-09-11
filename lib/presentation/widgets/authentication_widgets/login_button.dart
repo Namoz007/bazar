@@ -48,7 +48,9 @@ class _LoginButtonState extends State<LoginButton> {
         alignment: Alignment.center,
         child: BlocConsumer<AuthenticationBloc, AuthenticationBlocState>(
           listener: (context, state) {
+            print(state);
             if (state is AuthenticatedUserAuthenticationBlocState) {
+              print('ishladi bu');
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => const MainPage()),

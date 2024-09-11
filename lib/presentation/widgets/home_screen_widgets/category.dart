@@ -59,7 +59,7 @@ class _CategoryState extends State<Category> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  InkWell(
+                  GestureDetector(
                     onTap: (){
                       context.read<ProductsBloc>().add(GetAllProductsBlocEvent(type: _categoryTypes[index]));
                     },

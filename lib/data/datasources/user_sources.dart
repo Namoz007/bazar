@@ -9,6 +9,11 @@ class UserSources{
   Future<UserDetails> getMyUser() async{
     final response = await _dio.get("/users/${AppDetails.model!.id}.json");
     final mp = response.data as Map<String,dynamic>;
-    return UserDetails.fromJson(response.data[mp.keys.toList()[0]]);
+    return UserDetails.fromJson(response.data);
+  }
+  
+  Future<UserDetails> editUserDetails(UserDetails model) async{
+    await _dio.put("/users/${model.id}.json",data: model.toMap(),);
+    return model;
   }
 }

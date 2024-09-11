@@ -30,3 +30,5 @@ final class ResetPasswordUserAuthenticationBlocEvent
     required this.email,
   });
 }
+
+final class LogOutAuthenticationBlocEvent extends AuthenticationBlocEvent{}

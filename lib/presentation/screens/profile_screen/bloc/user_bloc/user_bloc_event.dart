@@ -1,6 +1,15 @@
-sealed class UserBlocEvent{}
+import 'package:bazar/data/models/user_model.dart';
 
-final class GetMyUserUserBlocEvent extends UserBlocEvent{}
+sealed class UserBlocEvent {}
 
-final class GetMyUserFromSourcesUserBlocEvent extends UserBlocEvent{}
+final class GetMyUserUserBlocEvent extends UserBlocEvent {}
 
+final class GetMyUserFromSourcesUserBlocEvent extends UserBlocEvent {}
+
+final class EditUserBlocEvent extends UserBlocEvent {
+  UserDetails model;
+
+  EditUserBlocEvent({
+    required this.model,
+  });
+}

@@ -10,4 +10,8 @@ class UserRepositories{
     return await _sources.getMyUser();
   }
 
+  Future<UserDetails> editUser(UserDetails model) async{
+    return await _sources.editUserDetails(model);
+  }
+
 }
