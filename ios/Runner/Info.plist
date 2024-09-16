@@ -45,5 +45,10 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+    <string>Kameradan foydalanishga ruxsat bering</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Rasmlar galereyasiga kirishga ruxsat bering</string>
+
 </dict>
 </plist>

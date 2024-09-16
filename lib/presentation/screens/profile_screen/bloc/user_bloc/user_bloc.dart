@@ -15,7 +15,7 @@ class UserBloc extends Bloc<UserBlocEvent,UserBlocState>{
   }
 
   void _editMyUser(EditUserBlocEvent event,emit) async{
-    AppDetails.model = await _repositories.editUser(event.model);
+    AppDetails.model = await _repositories.editUser(event.model,event.file,);
    emit(LoadedUserUserBlocState(userModel: AppDetails.model!));
   }
 

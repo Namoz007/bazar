@@ -26,7 +26,6 @@ class _ProductDetailsState extends State<ProductDetails> {
   }
 
   Color hexToColor(String code) {
-    print('bu code $code');
     return Color(
         int.parse(code.substring(0, code.length), radix: 16) + 0xFF000000);
   }

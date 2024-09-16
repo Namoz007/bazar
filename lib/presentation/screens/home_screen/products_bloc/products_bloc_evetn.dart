@@ -30,3 +30,9 @@ final class WriteReviewForProductsBlocEvent extends ProductsBlocEvent{
 
   WriteReviewForProductsBlocEvent({required this.review,});
 }
+
+final class SearchProductsBlocEvent extends ProductsBlocEvent{
+  String search;
+
+  SearchProductsBlocEvent({required this.search,});
+}

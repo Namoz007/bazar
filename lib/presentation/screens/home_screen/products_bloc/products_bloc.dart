@@ -16,6 +16,15 @@ class ProductsBloc extends Bloc<ProductsBlocEvent,ProductsBlocState>{
     on<GetAllProductsBlocEvent>(_getAllProducts);
     on<CreateNewProductProductsBlocEvent>(_createNewProduct);
     on<WriteReviewForProductsBlocEvent>(_writeReview);
+    on<SearchProductsBlocEvent>(_searchProduct);
+  }
+
+  void _searchProduct(SearchProductsBlocEvent event,emit){
+    if(event.search.trim().isEmpty){
+      emit(LoadedAllProductsBlocState(type: productCategoryTypes.all, products: []));
+    }else{
+      emit(LoadedAllProductsBlocState(type: productCategoryTypes.all, products: [for(int i = 0;i < _products.length;i++) if(_products[i].name.toLowerCase().contains(event.search.toLowerCase())) _products[i]]));
+    }
   }
 
   void _writeReview(WriteReviewForProductsBlocEvent event,emit) async{

@@ -16,13 +16,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: RefreshIndicator(
-        onRefresh: () async{
-          context.read<ProductsBloc>().add(GetAllProductsFromDataSourcesProductsBlocEvent(type: productCategoryTypes.all,),);
+        onRefresh: () async {
+          context.read<ProductsBloc>().add(
+                GetAllProductsFromDataSourcesProductsBlocEvent(
+                  type: productCategoryTypes.all,
+                ),
+              );
         },
         child: ListView(
           children: [
@@ -52,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.symmetric(
                 horizontal: 20,
               ),
-              // child: ShowProducts()
+              // child: ShowProducts(),
             ),
           ],
         ),

@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:bazar/core/utils/details/app_details.dart';
 import 'package:bazar/data/models/user_model.dart';
 import 'package:bazar/main.dart';
 import 'package:bazar/presentation/screens/profile_screen/bloc/user_bloc/user_bloc.dart';
 import 'package:bazar/presentation/screens/profile_screen/bloc/user_bloc/user_bloc_event.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:img_picker/img_picker.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class EditMyDatas extends StatefulWidget {
@@ -18,8 +22,10 @@ class _EditMyDatasState extends State<EditMyDatas> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _phoneNumber = TextEditingController();
+  final ImagePicker _picker = ImagePicker();
   String? gender;
   DateTime? birthday;
+  File? img;
 
   @override
   void initState() {
@@ -31,9 +37,10 @@ class _EditMyDatasState extends State<EditMyDatas> {
   }
 
   var maskFormatter = MaskTextInputFormatter(
-      mask: '+### (##) ###-##-##',
-      filter: {"#": RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy,);
+    mask: '+### (##) ###-##-##',
+    filter: {"#": RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -60,32 +67,71 @@ class _EditMyDatasState extends State<EditMyDatas> {
                 ),
                 FilledButton(
                   onPressed: () {
-                    try{
-
-                    }catch(e){
-
-                    }finally{
-
-                    }
-                    if(_formKey.currentState!.validate()){
+                    if (_formKey.currentState!.validate()) {
                       context.read<UserBloc>().add(
-                        EditUserBlocEvent(
-                            model: UserDetails(
-                              id: AppDetails.model!.id,
-                              email: AppDetails.model!.email,
-                              fullName: _nameController.text,
-                              gender: gender,
-                              birthday: birthday,
-                              phoneNumber: maskFormatter.getMaskedText().isEmpty ? AppDetails.model!.phoneNumber : maskFormatter.getMaskedText(),
+                            EditUserBlocEvent(
+                              model: UserDetails(
+                                id: AppDetails.model!.id,
+                                email: AppDetails.model!.email,
+                                fullName: _nameController.text,
+                                gender: gender,
+                                birthday: birthday,
+                                imgUrl: AppDetails.model!.imgUrl,
+                                phoneNumber:
+                                    maskFormatter.getMaskedText().isEmpty
+                                        ? AppDetails.model!.phoneNumber
+                                        : maskFormatter.getMaskedText(),
+                              ),
+                              file: img,
                             ),
-                        ),
-                      );
+                          );
                       Navigator.pop(context);
                     }
                   },
                   child: const Text("Done"),
                 ),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 20,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () async{
+                      final data = await _picker.pickImage(source: ImageSource.camera);
+                      if(data != null){
+                        img = File(data.path);
+                      }
+                    },
+                    child: const Icon(Icons.camera_alt,size: 50,),
+                  ),
+                  
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 40),
+                    child: Container(
+                      height: 70,
+                      width: 70,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(image: AppDetails.model!.imgUrl == null ? const AssetImage("assets/images/person.jpg") : NetworkImage(AppDetails.model!.imgUrl!,),fit: BoxFit.cover,)
+                      ),
+                    ),
+                  ),
+
+                  GestureDetector(
+                    onTap: () async{
+                      final data = await _picker.pickImage(source: ImageSource.gallery);
+                      if(data != null){
+                        img = File(data.path);
+                      }
+                    },
+                    child: const Icon(Icons.image,size: 50,),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -123,7 +169,8 @@ class _EditMyDatasState extends State<EditMyDatas> {
                   ),
                 ),
                 DropdownButton(
-                  hint: Text("${gender == null || gender!.isEmpty ? "Gender" : gender}"),
+                  hint: Text(
+                      "${gender == null || gender!.isEmpty ? "Gender" : gender}"),
                   items: const [
                     DropdownMenuItem(
                       child: Text("Man"),
@@ -190,12 +237,11 @@ class _EditMyDatasState extends State<EditMyDatas> {
             TextField(
               inputFormatters: [maskFormatter],
               decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                hintText: "Phone numbers",
-                prefixIcon: const Icon(Icons.phone)
-              ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  hintText: "Phone numbers",
+                  prefixIcon: const Icon(Icons.phone)),
             ),
           ],
         ),

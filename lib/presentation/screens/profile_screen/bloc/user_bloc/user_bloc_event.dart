@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bazar/data/models/user_model.dart';
 
 sealed class UserBlocEvent {}
@@ -8,8 +10,10 @@ final class GetMyUserFromSourcesUserBlocEvent extends UserBlocEvent {}
 
 final class EditUserBlocEvent extends UserBlocEvent {
   UserDetails model;
+  File? file;
 
   EditUserBlocEvent({
     required this.model,
+    this.file,
   });
 }

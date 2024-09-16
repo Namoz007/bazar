@@ -29,7 +29,6 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: BlocListener<AuthenticationBloc,AuthenticationBlocState>(
         listener: (context, state) {
-          print("bu state $state");
           if(state is ErrorAuthenticationBlocState){
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message,),),);
           }

@@ -31,7 +31,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(color: Colors.grey,),
-                image: DecorationImage(image: AppDetails.model!.imgUrl == null ? const AssetImage("assets/images/person.jpg") : NetworkImage(AppDetails.model!.imgUrl.toString(),),),
+                image: DecorationImage(image: AppDetails.model!.imgUrl == null ? const AssetImage("assets/images/person.jpg") : NetworkImage(AppDetails.model!.imgUrl.toString(),),fit: BoxFit.cover),
               ),
             ),
           ),
