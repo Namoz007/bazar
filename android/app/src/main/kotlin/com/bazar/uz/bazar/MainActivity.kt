@@ -11,4 +11,4 @@ class MainActivity: FlutterActivity() {
         MapKitFactory.setApiKey("5e6fdbaf-cd76-4234-98e7-24993ed545cf")
         super.configureFlutterEngine(flutterEngine)
     }
-} 
+}
