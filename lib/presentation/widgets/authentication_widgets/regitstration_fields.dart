@@ -1,5 +1,4 @@
 import 'package:bazar/presentation/widgets/authentication_widgets/login_fields.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationFields extends StatefulWidget {

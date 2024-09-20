@@ -1,4 +1,3 @@
-import 'package:bazar/main.dart';
 import 'package:bazar/presentation/screens/cart_screen/bloc/cart_bloc/order_bloc.dart';
 import 'package:bazar/presentation/screens/cart_screen/bloc/cart_bloc/order_bloc_event.dart';
 import 'package:bazar/presentation/screens/cart_screen/bloc/cart_bloc/order_bloc_state.dart';
@@ -6,7 +5,6 @@ import 'package:bazar/presentation/widgets/order_screen_widgets/loading_state_or
 import 'package:bazar/presentation/widgets/order_screen_widgets/show_orders_for_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
 
 class OrdersScreen extends StatefulWidget {
   const OrdersScreen({super.key});

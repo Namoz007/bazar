@@ -41,7 +41,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
           ListTile(
             leading: const Icon(Icons.female),
             title: const Text("Gender",style: TextStyle(fontWeight: FontWeight.bold,),),
-            trailing: Text(widget.model.gender == null || widget.model!.gender!.isEmpty ? "not know" : widget.model.gender.toString(),style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 12,color: Colors.grey,),),
+            trailing: Text(widget.model.gender == null || widget.model.gender!.isEmpty ? "not know" : widget.model.gender.toString(),style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 12,color: Colors.grey,),),
           ),
 
           ListTile(
@@ -53,7 +53,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
           ListTile(
             leading: const Icon(Icons.email_outlined),
             title: const Text('Email',style: TextStyle(fontWeight: FontWeight.bold,),),
-            trailing: Text(widget.model!.email,style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 12,color: Colors.grey,),),
+            trailing: Text(widget.model.email,style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 12,color: Colors.grey,),),
           ),
 
           ListTile(

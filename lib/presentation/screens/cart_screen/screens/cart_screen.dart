@@ -111,10 +111,6 @@ class _CartScreenState extends State<CartScreen> {
                                     child: Container(
                                       height: 25,
                                       width: 30,
-                                      child: Icon(
-                                        Icons.add,
-                                        size: 15,
-                                      ),
                                       decoration: BoxDecoration(
                                           borderRadius:
                                           const BorderRadius.only(
@@ -124,6 +120,10 @@ class _CartScreenState extends State<CartScreen> {
                                           border: Border.all(
                                             color: Colors.grey,
                                           )),
+                                      child: Icon(
+                                        Icons.add,
+                                        size: 15,
+                                      ),
                                     ),
                                   ),
                                   Container(
@@ -154,7 +154,7 @@ class _CartScreenState extends State<CartScreen> {
                                         border: Border.all(
                                           color: Colors.grey,
                                         ),
-                                        borderRadius: BorderRadius.only(
+                                        borderRadius: const BorderRadius.only(
                                           topRight: Radius.circular(5),
                                           bottomRight: Radius.circular(5),
                                         ),

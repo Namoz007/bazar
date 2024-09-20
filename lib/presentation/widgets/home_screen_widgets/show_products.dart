@@ -1,12 +1,10 @@
 import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc.dart';
-import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc_evetn.dart';
 import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc_state.dart';
 import 'package:bazar/presentation/screens/home_screen/screens/show_product_screen.dart';
 import 'package:bazar/presentation/widgets/home_screen_widgets/show_product_for_menu.dart';
 import 'package:bazar/presentation/widgets/home_screen_widgets/widget_for_loading_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
 
 class ShowProducts extends StatefulWidget {
   const ShowProducts({super.key});
@@ -24,6 +22,7 @@ class _ShowProductsState extends State<ShowProducts> {
           return Padding(
             padding: const EdgeInsets.only(top: 20),
             child: GridView.builder(
+              itemCount: 10,
               shrinkWrap: true,
               physics: const ScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -48,12 +47,13 @@ class _ShowProductsState extends State<ShowProducts> {
                   ),
                 )
               : Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: GridView.builder(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: GridView.builder(
                     shrinkWrap: true,
                     physics: const ScrollPhysics(),
                     itemCount: state.products.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 1 / 1.2,
                       mainAxisSpacing: 5,
@@ -61,13 +61,23 @@ class _ShowProductsState extends State<ShowProducts> {
                     ),
                     itemBuilder: (context, index) {
                       return InkWell(
-                        onTap: () async{
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ShowProductScreen(product: state.products[index])));
+                        onTap: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ShowProductScreen(
+                                product: state.products[index],
+                              ),
+                            ),
+                          );
                         },
-                          child: ShowProductForMenu(product: state.products[index]));
+                        child: ShowProductForMenu(
+                          product: state.products[index],
+                        ),
+                      );
                     },
                   ),
-              );
+                );
         }
 
         return Container();

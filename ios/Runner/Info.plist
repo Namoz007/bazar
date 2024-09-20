@@ -49,6 +49,11 @@
     <string>Kameradan foydalanishga ruxsat bering</string>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>Rasmlar galereyasiga kirishga ruxsat bering</string>
-
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to location when open.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string> 
+	</array>
 </dict>
 </plist>

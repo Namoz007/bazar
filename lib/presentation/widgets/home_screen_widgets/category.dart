@@ -21,7 +21,7 @@ class _CategoryState extends State<Category> {
   }
   
   
-  List<String> _categoryIcons = [
+  final List<String> _categoryIcons = [
     "grid.png",
     "sneaker.png",
     "trousers.png",
@@ -29,7 +29,7 @@ class _CategoryState extends State<Category> {
     "cap.png",
     "tracksuit.png",
   ];
-  List<productCategoryTypes> _categoryTypes = [
+  final List<productCategoryTypes> _categoryTypes = [
     productCategoryTypes.all,
     productCategoryTypes.sneaker,
     productCategoryTypes.pants,
@@ -37,7 +37,7 @@ class _CategoryState extends State<Category> {
     productCategoryTypes.cap,
     productCategoryTypes.tracksuit,
   ];
-  List<String> _categoryNames = [
+  final List<String> _categoryNames = [
     "All",
     "Sneakers",
     "Pants",

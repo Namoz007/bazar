@@ -21,7 +21,7 @@ class UserSources{
     if(file != null){
       try {
         Reference storageRef = FirebaseStorage.instance.ref().child('${model.fullName}${Random().nextInt(99999)}_avatar.jpg');
-        UploadTask uploadTask = storageRef.putFile(file!);
+        UploadTask uploadTask = storageRef.putFile(file);
         TaskSnapshot snapshot = await uploadTask;
         String downloadURL = await snapshot.ref.getDownloadURL();
         model.imgUrl = downloadURL;

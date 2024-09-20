@@ -1,38 +1,48 @@
 import 'package:bazar/data/models/product_model.dart';
 import 'package:bazar/data/models/review_model.dart';
-import 'package:bazar/domain/entities/product.dart';
-import 'package:bazar/domain/entities/review.dart';
 import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc.dart';
 
-sealed class ProductsBlocEvent{}
+sealed class ProductsBlocEvent {}
 
-final class GetAllProductsBlocEvent extends ProductsBlocEvent{
+final class GetAllProductsBlocEvent extends ProductsBlocEvent {
   productCategoryTypes type;
 
-  GetAllProductsBlocEvent({required this.type,});
+  GetAllProductsBlocEvent({
+    required this.type,
+  });
 }
 
-final class GetAllProductsFromDataSourcesProductsBlocEvent extends ProductsBlocEvent{
+final class GetAllProductsFromDataSourcesProductsBlocEvent
+    extends ProductsBlocEvent {
   productCategoryTypes type;
 
-  GetAllProductsFromDataSourcesProductsBlocEvent({required this.type,});
+  GetAllProductsFromDataSourcesProductsBlocEvent({
+    required this.type,
+  });
 }
 
-final class CreateNewProductProductsBlocEvent extends ProductsBlocEvent{
+final class CreateNewProductProductsBlocEvent extends ProductsBlocEvent {
   productCategoryTypes type;
   ProductModel product;
 
-  CreateNewProductProductsBlocEvent({required this.type,required this.product});
+  CreateNewProductProductsBlocEvent(
+      {required this.type, required this.product});
 }
 
-final class WriteReviewForProductsBlocEvent extends ProductsBlocEvent{
+final class WriteReviewForProductsBlocEvent extends ProductsBlocEvent {
   ReviewModel review;
+  productCategoryTypes type;
 
-  WriteReviewForProductsBlocEvent({required this.review,});
+  WriteReviewForProductsBlocEvent({
+    required this.review,
+    required this.type,
+  });
 }
 
-final class SearchProductsBlocEvent extends ProductsBlocEvent{
+final class SearchProductsBlocEvent extends ProductsBlocEvent {
   String search;
 
-  SearchProductsBlocEvent({required this.search,});
+  SearchProductsBlocEvent({
+    required this.search,
+  });
 }

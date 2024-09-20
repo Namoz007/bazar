@@ -1,10 +1,13 @@
-import 'package:bazar/main.dart';
 import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc.dart';
 import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc_evetn.dart';
+import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc_state.dart';
+import 'package:bazar/presentation/screens/home_screen/screens/show_product_screen.dart';
 import 'package:bazar/presentation/widgets/home_screen_widgets/advertising.dart';
 import 'package:bazar/presentation/widgets/home_screen_widgets/category.dart';
 import 'package:bazar/presentation/widgets/home_screen_widgets/search_detail.dart';
+import 'package:bazar/presentation/widgets/home_screen_widgets/show_product_for_menu.dart';
 import 'package:bazar/presentation/widgets/home_screen_widgets/show_products.dart';
+import 'package:bazar/presentation/widgets/home_screen_widgets/widget_for_loading_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -55,8 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.symmetric(
                 horizontal: 20,
               ),
-              // child: ShowProducts(),
+              child: ShowProducts(),
             ),
+            // const ShowProducts()
           ],
         ),
       ),

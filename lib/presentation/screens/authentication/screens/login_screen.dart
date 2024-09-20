@@ -4,7 +4,6 @@ import 'package:bazar/presentation/widgets/authentication_widgets/login_button.d
 import 'package:bazar/presentation/widgets/authentication_widgets/login_fields.dart';
 import 'package:bazar/presentation/widgets/authentication_widgets/title_words.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

@@ -15,7 +15,9 @@ class _ShowProductForMenuState extends State<ShowProductForMenu> {
   @override
   void initState() {
     super.initState();
-    for(int i = 0;i < widget.product.reviews.length;i++) score += widget.product.reviews[i].score;
+    for(int i = 0;i < widget.product.reviews.length;i++) {
+      score += widget.product.reviews[i].score;
+    }
   }
 
 

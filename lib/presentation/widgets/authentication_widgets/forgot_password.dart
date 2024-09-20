@@ -1,4 +1,3 @@
-import 'package:bazar/main.dart';
 import 'package:bazar/presentation/screens/authentication/bloc/authentication_bloc.dart';
 import 'package:bazar/presentation/screens/authentication/bloc/authentication_bloc_event.dart';
 import 'package:flutter/material.dart';

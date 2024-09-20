@@ -1,10 +1,8 @@
-import 'package:bazar/core/utils/details/app_details.dart';
 import 'package:bazar/presentation/screens/main_page/screens/main_page.dart';
 import 'package:bazar/presentation/screens/authentication/bloc/authentication_bloc.dart';
 import 'package:bazar/presentation/screens/authentication/bloc/authentication_bloc_event.dart';
 import 'package:bazar/presentation/screens/authentication/bloc/authentication_bloc_state.dart';
 import 'package:bazar/presentation/screens/authentication/screens/login_screen.dart';
-import 'package:bazar/presentation/screens/home_screen/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';

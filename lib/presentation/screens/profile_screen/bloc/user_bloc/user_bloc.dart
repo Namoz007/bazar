@@ -1,6 +1,5 @@
 import 'package:bazar/core/utils/details/app_details.dart';
 import 'package:bazar/core/utils/helpers/dependency_helpers.dart';
-import 'package:bazar/data/models/user_model.dart';
 import 'package:bazar/data/repostories/user_repositories.dart';
 import 'package:bazar/presentation/screens/profile_screen/bloc/user_bloc/user_bloc_event.dart';
 import 'package:bazar/presentation/screens/profile_screen/bloc/user_bloc/user_bloc_state.dart';

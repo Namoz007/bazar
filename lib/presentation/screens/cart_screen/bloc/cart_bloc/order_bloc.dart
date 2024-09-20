@@ -48,8 +48,9 @@ class OrderBloc extends Bloc<OrderBlocEvent,OrderBlocState>{
   void _orderingProducts(OrderingProductsOrderBlocEvent event,emit) async{
     emit(LoadingOrderBlocState());
     double price = 0;
-    for(int i = 0;i < _carts.length;i++)
+    for(int i = 0;i < _carts.length;i++) {
       price += _carts[i].amount * _carts[i].product.price;
+    }
     await _repositories.order(OrderModel(userId: AppDetails.model!.id, id: '', carts: _carts, price: price, dateTime: DateTime.now(), action: orderActions.ordering,),);
     _carts= [];
     emit(LoadedAllCardsOrderBlocState(carts: _carts,orders: _myOrders));

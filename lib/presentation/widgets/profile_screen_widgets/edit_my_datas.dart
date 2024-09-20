@@ -173,16 +173,16 @@ class _EditMyDatasState extends State<EditMyDatas> {
                       "${gender == null || gender!.isEmpty ? "Gender" : gender}"),
                   items: const [
                     DropdownMenuItem(
-                      child: Text("Man"),
                       value: "Man",
+                      child: Text("Man"),
                     ),
                     DropdownMenuItem(
-                      child: Text("Woman"),
                       value: "Woman",
+                      child: Text("Woman"),
                     ),
                     DropdownMenuItem(
-                      child: Text("Other"),
                       value: "Other",
+                      child: Text("Other"),
                     ),
                   ],
                   onChanged: (value) {

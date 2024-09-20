@@ -1,6 +1,6 @@
 import 'package:bazar/core/utils/helpers/dependency_helpers.dart';
-import 'package:bazar/data/datasources/authentication_sources.dart';
 import 'package:bazar/data/repostories/authentication_repositories.dart';
+import 'package:bazar/data/repostories/location_repositories.dart';
 import 'package:bazar/data/repostories/order_repositories.dart';
 import 'package:bazar/data/repostories/products_repositories.dart';
 import 'package:bazar/data/repostories/user_repositories.dart';
@@ -8,14 +8,15 @@ import 'package:bazar/firebase_options.dart';
 import 'package:bazar/presentation/screens/authentication/bloc/authentication_bloc.dart';
 import 'package:bazar/presentation/screens/authentication/screens/splash_screen.dart';
 import 'package:bazar/presentation/screens/cart_screen/bloc/cart_bloc/order_bloc.dart';
+import 'package:bazar/presentation/screens/cart_screen/bloc/location_cubit/location_cubit.dart';
 import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc.dart';
-import 'package:bazar/presentation/screens/home_screen/screens/home_screen.dart';
 import 'package:bazar/presentation/screens/main_page/bloc/mainpage_bloc.dart';
 import 'package:bazar/presentation/screens/profile_screen/bloc/user_bloc/user_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +38,7 @@ class MainApp extends StatelessWidget {
         RepositoryProvider(create: (context) => ProductsRepositories()),
         RepositoryProvider(create: (context) => OrderRepositories()),
         RepositoryProvider(create: (context) => UserRepositories()),
+        RepositoryProvider(create: (context) => LocationRepositories()),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -45,6 +47,7 @@ class MainApp extends StatelessWidget {
           BlocProvider(create: (context) => ProductsBloc()),
           BlocProvider(create: (context) => OrderBloc()),
           BlocProvider(create: (context) => UserBloc()),
+          BlocProvider(create: (context) => LocationCubit()),
         ],
         child: const MaterialApp(
           debugShowCheckedModeBanner: false,

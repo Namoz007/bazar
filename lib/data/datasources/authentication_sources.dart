@@ -17,11 +17,12 @@ class AuthenticationSources {
     final users = await _dio.get("/users.json");
     if (users.data != null) {
       final mp = users.data as Map<String, dynamic>;
-      for (int i = 0; i < mp.keys.toList().length; i++)
+      for (int i = 0; i < mp.keys.toList().length; i++) {
         if (mp[mp.keys.toList()[i]]['email'] == getIt<SharedPreferences>().getString("email")) {
           AppDetails.model = UserDetails.fromJson(mp[mp.keys.toList()[i]]);
           return true;
         }
+      }
     }
     return false;
   }
@@ -37,6 +38,7 @@ class AuthenticationSources {
     } catch (e) {
       return "E-mail or password is incorrect!";
     }
+    return null;
   }
 
   Future<String?> registerUser(RegisterRequestModel model) async {

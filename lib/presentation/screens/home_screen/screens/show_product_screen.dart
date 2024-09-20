@@ -1,8 +1,6 @@
 import 'package:bazar/data/models/product_model.dart';
-import 'package:bazar/domain/entities/product.dart';
-import 'package:bazar/presentation/screens/cart_screen/bloc/cart_bloc/order_bloc.dart';
-import 'package:bazar/presentation/screens/cart_screen/bloc/cart_bloc/order_bloc_event.dart';
-import 'package:bazar/presentation/screens/cart_screen/bloc/cart_bloc/order_bloc_state.dart';
+import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc.dart';
+import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc_state.dart';
 import 'package:bazar/presentation/widgets/home_screen_widgets/cart_button.dart';
 import 'package:bazar/presentation/widgets/home_screen_widgets/imgs_scrol_widgets.dart';
 import 'package:bazar/presentation/widgets/home_screen_widgets/product_details.dart';
@@ -65,24 +63,42 @@ class _ShowProductScreenState extends State<ShowProductScreen> {
               padding: const EdgeInsets.symmetric(
                 horizontal: 20,
               ),
-              child: ProductDetails(
-                product: widget.product,
+              child: BlocBuilder<ProductsBloc, ProductsBlocState>(
+                builder: (context, state) {
+                  return ProductDetails(
+                    product: state is LoadedAllProductsBlocState
+                        ? state.products[state.products.indexWhere(
+                            (value) => value.id == widget.product.id,
+                          )]
+                        : widget.product,
+                  );
+                },
               ),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: widget.product.quantity == 0 ? Container(
-        width: double.infinity,
-        height: 50,
-        margin: const EdgeInsets.symmetric(horizontal: 16,vertical: 30),
-        decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(5),
-        ),
-        alignment: Alignment.center,
-        child: const Text("The product is out of stock",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,),),
-      ) : CartButton(product: widget.product,),
+      bottomNavigationBar: widget.product.quantity == 0
+          ? Container(
+              width: double.infinity,
+              height: 50,
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              alignment: Alignment.center,
+              child: const Text(
+                "The product is out of stock",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            )
+          : CartButton(
+              product: widget.product,
+            ),
     );
   }
 }

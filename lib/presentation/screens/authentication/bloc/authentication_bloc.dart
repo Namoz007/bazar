@@ -47,8 +47,8 @@ class AuthenticationBloc
 
   void _userLogged(LoggedUserAuthenticationBlocEvent event,emit) async{
     emit(LoadingAuthenticationBlocState());
-    final _response = await _repositories.userLogged();
-    if(_response){
+    final response = await _repositories.userLogged();
+    if(response){
       await _repositories.getUser();
       emit(AuthenticatedUserAuthenticationBlocState());
     }else{
@@ -58,11 +58,11 @@ class AuthenticationBloc
 
   void _registerUser(SignUpUserAuthenticationBlocEvent event,emit) async{
     emit(LoadingAuthenticationBlocState());
-    final _reponse = await _repositories.registerUser(event.model);
-    if(_reponse == null){
+    final reponse = await _repositories.registerUser(event.model);
+    if(reponse == null){
       emit(AuthenticatedUserAuthenticationBlocState());
     }else{
-      emit(ErrorAuthenticationBlocState(message: _reponse));
+      emit(ErrorAuthenticationBlocState(message: reponse));
     }
   }
 }

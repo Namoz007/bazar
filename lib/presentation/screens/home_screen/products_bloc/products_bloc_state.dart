@@ -1,5 +1,4 @@
 import 'package:bazar/data/models/product_model.dart';
-import 'package:bazar/domain/entities/product.dart';
 import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc.dart';
 
 sealed class ProductsBlocState{}

@@ -2,7 +2,6 @@ import 'package:bazar/core/utils/helpers/dependency_helpers.dart';
 import 'package:bazar/data/datasources/products_sources.dart';
 import 'package:bazar/data/models/product_model.dart';
 import 'package:bazar/data/models/review_model.dart';
-import 'package:bazar/domain/entities/product.dart';
 
 class ProductsRepositories{
   final ProductsSources _sources = getIt<ProductsSources>();

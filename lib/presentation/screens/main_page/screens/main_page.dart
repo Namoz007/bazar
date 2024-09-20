@@ -1,5 +1,6 @@
 import 'package:bazar/main.dart';
 import 'package:bazar/presentation/screens/cart_screen/screens/cart_screen.dart';
+import 'package:bazar/presentation/screens/cart_screen/screens/select_my_location.dart';
 import 'package:bazar/presentation/screens/home_screen/screens/home_screen.dart';
 import 'package:bazar/presentation/screens/main_page/bloc/mainpage_bloc.dart';
 import 'package:bazar/presentation/screens/main_page/bloc/mainpage_bloc_state.dart';
@@ -17,13 +18,12 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-
-  List<Widget> _screens =[
-    HomeScreen(),
-    SearchScreen(),
-    CartScreen(),
-    OrdersScreen(),
-    ProfileScreen(),
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    const SearchScreen(),
+    const SelectMyLocation(),
+    const OrdersScreen(),
+    const ProfileScreen(),
   ];
 
   @override
@@ -36,9 +36,9 @@ class _MainPageState extends State<MainPage> {
 
         return Container();
       },
-    ), bottomNavigationBar: BlocBuilder<MainPageBloc,MainPageBlocState>(
+    ), bottomNavigationBar: BlocBuilder<MainPageBloc, MainPageBlocState>(
       builder: (context, state) {
-        if(state is LoadedScreenIndexMainPageBlocState){
+        if (state is LoadedScreenIndexMainPageBlocState) {
           return BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             items: const [

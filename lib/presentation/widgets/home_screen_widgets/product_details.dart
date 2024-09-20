@@ -1,11 +1,16 @@
-
 import 'package:bazar/core/utils/details/app_details.dart';
+import 'package:bazar/data/models/product_model.dart';
 import 'package:bazar/domain/entities/product.dart';
+import 'package:bazar/domain/entities/review.dart';
+import 'package:bazar/presentation/screens/cart_screen/bloc/cart_bloc/order_bloc_state.dart';
+import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc.dart';
+import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc_state.dart';
 import 'package:bazar/presentation/widgets/home_screen_widgets/write_review_for_product.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductDetails extends StatefulWidget {
-  Product product;
+  ProductModel product;
   ProductDetails({
     super.key,
     required this.product,
@@ -21,8 +26,9 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   void initState() {
     super.initState();
-    for (int i = 0; i < widget.product.reviews.length; i++)
+    for (int i = 0; i < widget.product.reviews.length; i++) {
       score += widget.product.reviews[i].score;
+    }
   }
 
   Color hexToColor(String code) {
@@ -86,10 +92,19 @@ class _ProductDetailsState extends State<ProductDetails> {
         const SizedBox(
           height: 50,
         ),
-        if(!widget.product.reviews.any((value) => value.userId == AppDetails.model!.id))
+        if (controMyUserFromReviews(widget.product.reviews))
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: WriteReviewForProduct(productId: widget.product.id),
+            child: BlocBuilder<ProductsBloc, ProductsBlocState>(
+              builder: (context, state) {
+                return WriteReviewForProduct(
+                  productId: widget.product.id,
+                  type: state is LoadedAllProductsBlocState
+                      ? state.type
+                      : productCategoryTypes.all,
+                );
+              },
+            ),
           ),
         const SizedBox(
           height: 20,
@@ -103,7 +118,8 @@ class _ProductDetailsState extends State<ProductDetails> {
         const SizedBox(
           height: 10,
         ),
-        widget.product.reviews.isEmpty
+        widget.product.reviews.isEmpty ||
+                controMyUserFromReviews(widget.product.reviews)
             ? const Padding(
                 padding: EdgeInsets.only(
                   bottom: 20,
@@ -129,36 +145,58 @@ class _ProductDetailsState extends State<ProductDetails> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ListTile(
-                        leading: Container(
-                          height: 50,
-                          width: 50,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: AssetImage("assets/images/person.jpg"),
+                          leading: Container(
+                            height: 50,
+                            width: 50,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: AssetImage("assets/images/person.jpg"),
+                              ),
                             ),
                           ),
-                        ),
-                        title: Text(
-                          review.userName,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
+                          title: Text(
+                            review.userName,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        subtitle: Row(
-                          children: [
-                            for(int i = 0;i < 5;i++)
-                              Icon(review.score >= i ? Icons.star : Icons.star_border,color: review.score >= i ? Colors.yellow : Colors.blue,),
-                          ],
-                        )
+                          subtitle: Row(
+                            children: [
+                              for (int i = 0; i < 5; i++)
+                                Icon(
+                                  review.score >= i
+                                      ? Icons.star
+                                      : Icons.star_border,
+                                  color: review.score >= i
+                                      ? Colors.yellow
+                                      : Colors.blue,
+                                ),
+                            ],
+                          )),
+                      const SizedBox(
+                        height: 10,
                       ),
-                      const SizedBox(height: 10,),
-                      Text(review.message,style: const TextStyle(fontWeight: FontWeight.bold,),),
+                      Text(
+                        review.message,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
                   );
                 },
               ),
       ],
     );
+  }
+
+  bool controMyUserFromReviews(List<Review> reviews) {
+    for (int i = 0; i < reviews.length; i++) {
+      if (reviews[i].userId == AppDetails.model!.id) {
+        return false;
+      }
+    }
+    return true;
   }
 }
