@@ -1,6 +1,7 @@
 import 'package:bazar/data/models/review_model.dart';
 import 'package:bazar/domain/entities/product.dart';
 import 'package:bazar/presentation/screens/home_screen/products_bloc/products_bloc.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class ProductModel extends Product {
   ProductModel({
@@ -53,7 +54,7 @@ class ProductModel extends Product {
       'imageUrl': imageUrl,
       'quantity': quantity,
       'category': category.name,
-      "reviews": reviews
+      "reviews": reviews,
     };
   }
 }

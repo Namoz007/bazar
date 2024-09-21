@@ -181,22 +181,7 @@ class _CartScreenState extends State<CartScreen> {
           return const SizedBox();
         },
       ),
-      bottomNavigationBar: BlocBuilder<OrderBloc,OrderBlocState>(
-        builder: (context, state) {
-          if(state is LoadedAllCardsOrderBlocState){
-            if(state.carts.isNotEmpty){
-              double price = 0;
-              for(int i = 0;i < state.carts.length;i++){
-                price += state.carts[i].amount * state.carts[i].product.price;
-              }
-              return OrderButton(price: price,);
-            }else{
-              return Container();
-            }
-          }
-          return const SizedBox();
-        },
-      ),
+      bottomNavigationBar: const OrderButton(),
     );
   }
 }

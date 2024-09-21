@@ -1,4 +1,5 @@
 import 'package:bazar/data/models/product_model.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 sealed class OrderBlocEvent{}
 
@@ -21,4 +22,8 @@ final class RemoveProductFromCartOrderBlocEvent extends OrderBlocEvent{
   RemoveProductFromCartOrderBlocEvent({required this.model,});
 }
 
-final class OrderingProductsOrderBlocEvent extends OrderBlocEvent{}
+final class OrderingProductsOrderBlocEvent extends OrderBlocEvent{
+  Point address;
+
+  OrderingProductsOrderBlocEvent({required this.address});
+}

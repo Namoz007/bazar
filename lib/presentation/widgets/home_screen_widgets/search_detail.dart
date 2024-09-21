@@ -49,31 +49,6 @@ class _SearchDetailState extends State<SearchDetail> {
             },
           ),
         ),
-        const SizedBox(
-          width: 20,
-        ),
-        InkWell(
-          onTap: () {
-            // context.read<ProductsBloc>().add(CreateNewProductProductsBlocEvent(
-            //     type: productCategoryTypes.all,
-            //     product: ProductModel(
-            // id: "",
-            // name: "Nike sneaker",
-            // description: "The best sneaker in the world",
-            // color: "FFFFFF",
-            // price: 50,
-            // imageUrl: [
-            //   'https://cdn.sanity.io/images/c1chvb1i/production/214ac000881684a7ce4d29619cab809b1b0510ea-1100x735.jpg'
-            // ],
-            // quantity: 150,
-            // category: productCategoryTypes.sneaker,
-            // reviews: [])));
-          },
-          child: const Icon(
-            Icons.notifications,
-            size: 24,
-          ),
-        )
       ],
     );
   }

@@ -1,6 +1,7 @@
 import 'package:bazar/data/models/cart_model.dart';
 import 'package:bazar/domain/entities/order.dart';
 import 'package:bazar/presentation/screens/cart_screen/bloc/cart_bloc/order_bloc.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class OrderModel extends Order {
   OrderModel({
@@ -10,6 +11,7 @@ class OrderModel extends Order {
     required super.price,
     required super.dateTime,
     required super.action,
+    required super.address,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
@@ -29,6 +31,7 @@ class OrderModel extends Order {
       price: double.parse(json['price'].toString()),
       dateTime: DateTime.parse(json['dateTime'].toString()),
       action: actions[json['action']]!,
+      address: Point(latitude: json['latitude'], longitude: json['longitude']),
     );
   }
 
@@ -40,6 +43,8 @@ class OrderModel extends Order {
       "price": price,
       "dateTime": dateTime.toString(),
       "action": action.name,
+      "latitude": address.latitude,
+      "longitude": address.longitude,
     };
   }
 }

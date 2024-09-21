@@ -1,5 +1,6 @@
 import 'package:bazar/data/models/cart_model.dart';
 import 'package:bazar/presentation/screens/cart_screen/bloc/cart_bloc/order_bloc.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class Order {
   String userId;
@@ -8,6 +9,7 @@ class Order {
   double price;
   DateTime dateTime;
   orderActions action;
+  Point address;
 
   Order({
     required this.userId,
@@ -16,5 +18,6 @@ class Order {
     required this.price,
     required this.dateTime,
     required this.action,
+    required this.address,
   });
 }

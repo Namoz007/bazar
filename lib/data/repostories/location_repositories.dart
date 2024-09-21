@@ -4,26 +4,20 @@ import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class LocationRepositories {
   Future<Point?> getMyLocation() async {
-    PermissionStatus status = await Permission.location.request();
-
-    if (status.isGranted) {
-      print("Location permission granted.");
-    } else if (status.isDenied) {
-      print("Location permission denied.");
-    } else if (status.isPermanentlyDenied) {
-      print("Location permission permanently denied.");
-      // Bu yerda foydalanuvchini ruxsatlarni sozlash oynasiga yo'naltirish mumkin.
-      openAppSettings();
+    LocationPermission permission;
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return null;
+      }
     }
-    // print(await Permission.location.request());
+    if (permission == LocationPermission.deniedForever) {
+      return null;
+    }
 
-    // if (!await Geolocator.isLocationServiceEnabled()) {
-    //   print("ha");
-    // } else {
-    //   print("yoq");
-    // }
-    // await Geolocator.checkPermission();
-    // final location = await Geolocator.getCurrentPosition();
-    // print("bu locationku $location");
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    return Point(latitude: position.latitude, longitude: position.longitude,);
   }
 }

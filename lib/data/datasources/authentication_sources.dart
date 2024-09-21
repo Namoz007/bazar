@@ -38,7 +38,6 @@ class AuthenticationSources {
     } catch (e) {
       return "E-mail or password is incorrect!";
     }
-    return null;
   }
 
   Future<String?> registerUser(RegisterRequestModel model) async {
