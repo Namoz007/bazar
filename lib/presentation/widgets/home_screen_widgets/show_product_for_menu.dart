@@ -24,8 +24,6 @@ class _ShowProductForMenuState extends State<ShowProductForMenu> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
-      height: 200,
       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
       margin: const EdgeInsets.only(bottom: 5),
       decoration: BoxDecoration(
@@ -50,7 +48,7 @@ class _ShowProductForMenuState extends State<ShowProductForMenu> {
             ),
           ),
 
-          Text(widget.product.name,style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 12,),),
+          Text(widget.product.name,style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 12,),overflow: TextOverflow.ellipsis,),
 
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
