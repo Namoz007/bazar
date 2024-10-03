@@ -7,7 +7,7 @@ import 'package:bazar/presentation/screens/cart_screen/bloc/cart_bloc/order_bloc
 import 'package:bazar/presentation/screens/cart_screen/bloc/cart_bloc/order_bloc_state.dart';
 import 'package:bloc/bloc.dart';
 
-enum orderActions {ordering,accepted,delivering,delivered}
+enum orderActions {ordering,accepted,delivering,delivered,cancel}
 
 class OrderBloc extends Bloc<OrderBlocEvent,OrderBlocState>{
   final _repositories = getIt<OrderRepositories>();
