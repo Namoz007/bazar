@@ -21,6 +21,8 @@ class _AdvertisingState extends State<Advertising> {
             borderRadius: BorderRadius.circular(5),
             border: Border.all(color: Colors.blue,),
           ),
+          alignment: Alignment.center,
+          child: Text("BAZAR Advertising",style: TextStyle(fontSize: 35),),
         );
       },
     );
